@@ -27,7 +27,3 @@ The system's architecture is built on a secure foundation, ensuring that all use
 - **Username**: admin
 - **Password**: admin
 
-#### Default Admin User:
-
-- **Username**: nstefan55
-- **Password**: nstefan55

@@ -10,16 +10,15 @@ function validate_input($data)
 }
 
 if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
-	if ($_SESSION['role'] == 'employee' && isset($_POST['confirm_password'], $_POST['new_password'], $_POST['password'], $_POST['full_name'])) {
+	if ($_SESSION['role'] == 'employee' && isset($_POST['confirm_password'], $_POST['new_password'], $_POST['full_name'])) {
 		include "../DB_connection.php";
 
-		$password = validate_input($_POST['password']);
 		$full_name = validate_input($_POST['full_name']);
 		$new_password = validate_input($_POST['new_password']);
 		$confirm_password = validate_input($_POST['confirm_password']);
 		$id = $_SESSION['id'];
 
-		if (empty($password) || empty($new_password) || empty($confirm_password)) {
+		if (empty($new_password) || empty($confirm_password)) {
 			$em = "Password is required";
 			header("Location: ../edit_profile.php?error=$em");
 			exit();
@@ -34,27 +33,14 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 		} else {
 			include "Model/User.php";
 
-			$user = get_user_by_id($conn, $id);
-			if ($user) {
-				if (password_verify($password, $user['password'])) {
-					$new_password = password_hash($new_password, PASSWORD_DEFAULT);
+			$new_password = password_hash($new_password, PASSWORD_DEFAULT);
 
-					$data = array($full_name, $new_password, $id);
-					update_profile($conn, $data);
+			$data = array($full_name, $new_password, $id);
+			update_profile($conn, $data);
 
-					$em = "User updated successfully";
-					header("Location: ../edit_profile.php?success=$em");
-					exit();
-				} else {
-					$em = "Incorrect password";
-					header("Location: ../edit_profile.php?error=$em");
-					exit();
-				}
-			} else {
-				$em = "Unknown error occurred";
-				header("Location: ../edit_profile.php?error=$em");
-				exit();
-			}
+			$em = "User updated successfully";
+			header("Location: ../edit_profile.php?success=$em");
+			exit();
 		}
 	} else {
 		$em = "Unknown error occurred";

@@ -46,10 +46,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 						</div>
 
 						<div class="form-group">
-							<label>Old Password</label>
-							<input type="password" value="**********" name="password" class="form-control" placeholder="Old Password">
-						</div>
-						<div class="form-group">
 							<label>New Password</label>
 							<input type="password" name="new_password" class="form-control" placeholder="New Password">
 						</div>

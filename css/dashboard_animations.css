@@ -1,0 +1,9 @@
+.card:hover {
+  transform: translateY(-10px);
+  transition: transform 0.3s;
+}
+
+.card i {
+  font-size: 24px;
+  margin-bottom: 10px;
+}

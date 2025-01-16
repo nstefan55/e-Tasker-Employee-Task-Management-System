@@ -54,8 +54,9 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 				</h4>
 				<h4 class="h1 fw-bold mt-5 mb-4"><?= $text ?> (<?= $num_task ?>)</h4>
 				<?php if (isset($_GET['success'])) { ?>
-					<div class="alert alert-success" role="alert">
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
 						<?php echo stripcslashes($_GET['success']); ?>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
 				<?php } ?>
 				<?php if ($tasks != 0) { ?>
@@ -117,6 +118,15 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 		<script type="text/javascript">
 			let active = document.querySelector("#navList li:nth-child(4)");
 			active.classList.add("active");
+
+			document.querySelectorAll('.btn-close').forEach(button => {
+				button.addEventListener('click', function() {
+					const url = new URL(window.location.href);
+					url.searchParams.delete('error');
+					url.searchParams.delete('success');
+					window.history.replaceState({}, document.title, url.toString());
+				});
+			});
 		</script>
 	</body>
 

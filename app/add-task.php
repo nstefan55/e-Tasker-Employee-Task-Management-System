@@ -30,7 +30,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 			header("Location: ../create_task.php?error=$em");
 			exit();
 		} else if ($assigned_to == 0) {
-			$em = "Select User";
+			$em = "Please select an Employee";
 			header("Location: ../create_task.php?error=$em");
 			exit();
 		} else {

@@ -49,7 +49,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 								<div class="card text-center">
 									<div class="card-body">
 										<i class="fa fa-users"></i>
-										<h5 class="card-title"><?= $num_users ?> Employee</h5>
+										<h5 class="card-title"><?= $num_users ?> <?= $num_users == 1 ? 'Employee' : 'Employees' ?></h5>
 									</div>
 								</div>
 							</div>
@@ -122,7 +122,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 								<div class="card text-center">
 									<div class="card-body">
 										<i class="fa fa-tasks"></i>
-										<h5 class="card-title"><?= $num_my_task ?> My Tasks</h5>
+										<h5 class="card-title"><?= $num_my_task ?> <?= $num_my_task == 1 ? 'Task' : 'Tasks' ?></h5>
 									</div>
 								</div>
 							</div>
